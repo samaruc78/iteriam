@@ -37,6 +37,7 @@ https://docs.microsoft.com/en-us/java/openjdk/download
 - Descargar repositorio github
 https://github.com/samaruc78/iteriam/archive/refs/heads/main.zip
 
+- Definir la variable de entorno JAVA_HOME según S.O para que apunte a la JVM particular
 
 ```sh
 cd calculadora
