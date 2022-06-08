@@ -44,6 +44,11 @@ cd calculadora
 ./mvnw spring-boot:run
 ```
 
+## Uso de la API
+![POSTMAN](https://github.com/samaruc78/iteriam/blob/main/calculadora/APICall.png)
+
+
+
 ## TO-DO
 # Docker
 Reservado para llevar a cabo instrucciones que permitan "dockerizar" la aplicación.
