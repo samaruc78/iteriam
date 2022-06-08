@@ -33,6 +33,11 @@ calculadora/src/test/
 - Instalar Maven 3.x
 - Mínimo emplear JDK 11
 https://docs.microsoft.com/en-us/java/openjdk/download
+
+- Descargar repositorio github
+https://github.com/samaruc78/iteriam/archive/refs/heads/main.zip
+
+
 ```sh
 cd calculadora
 ./mvnw spring-boot:run
