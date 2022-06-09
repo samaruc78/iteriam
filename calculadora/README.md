@@ -16,10 +16,10 @@ Registro de cambios de la prueba técnica
 
 ## Work In Progress (WIP)
 - Se crea un paquete para excepciones (y sus clases de test) y se incorporan las siguientes:
--- ExceptionControllerHandler que engloba todos los manejadores de error
--- InvalidOperationException como excepcion concreta para operaciones invalidas (incluyendo las no implementadas aun)
--- InputParamException en el caso que haya operandos que no sean números (como Strings, chars...)
--- ErrorRespone como salida de error con campos de informacion como fecha, estadoHTTP, mensaje
+- ExceptionControllerHandler que engloba todos los manejadores de error
+- InvalidOperationException como excepcion concreta para operaciones invalidas (incluyendo las no implementadas aun)
+- InputParamException en el caso que haya operandos que no sean números (como Strings, chars...)
+- ErrorRespone como salida de error con campos de informacion como fecha, estadoHTTP, mensaje
 
 ## [0.0.3] - 2022-06-09
 ### Fixed
