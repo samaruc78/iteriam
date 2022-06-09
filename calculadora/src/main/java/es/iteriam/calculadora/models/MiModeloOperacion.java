@@ -4,7 +4,7 @@
  * 
  * Clase entidad DTO para manejar
  * Operandos y
- * Operadores * 
+ * Operadores  
  * 
  */
 
@@ -19,16 +19,27 @@ public class MiModeloOperacion {
     private BigDecimal b;
 
     public MiModeloOperacion() {
+        this(
+                new BigDecimal(0),
+                new BigDecimal(0),
+                "");
     }
 
     public MiModeloOperacion(String operador) {
-        this.operador = operador;
+        this(
+                new BigDecimal(0),
+                new BigDecimal(0),
+                operador);
     }
 
-
     public MiModeloOperacion(BigDecimal a, BigDecimal b) {
+        this(a, b, "");
+    }
+
+    public MiModeloOperacion(BigDecimal a, BigDecimal b, String operador) {
         this.a = a;
         this.b = b;
+        this.operador = operador;
     }
 
     public BigDecimal getA() {
