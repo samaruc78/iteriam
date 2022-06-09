@@ -61,6 +61,7 @@ https://github.com/samaruc78/iteriam/archive/refs/heads/main.zip
 
 ```sh
 cd calculadora
+mvn -N io.takari:maven:wrapper
 ./mvnw spring-boot:run
 ```
 
