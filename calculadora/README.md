@@ -14,6 +14,20 @@ https://github.com/samaruc78/sanitasTest4
 ## Change Log
 Registro de cambios de la prueba técnica
 
+## [0.0.3] - 2022-06-09
+### Fixed
+- No utilizar llamadas a System.err.println. Se usa la librería de tracer.
+- Se crea la clase TracerImplConfig con un Bean al constructor TracerImpl para no instanciar dentro de los componentes.
+- Se crea un paquete para excepciones (y sus clases de test) y se incorporan las siguientes:
+-- ExceptionController que engloba todos los manejadores de error
+-- InvalidoperationException como excepcion concreta para operaciones invalidas (incluyendo las no implementadas aun)
+-- InputParamBadFormat en el caso que haya operandos que no sean números (como Strings, chars...)
+-- ErrorRespone como salida de error con campos de informacion como fecha, estadoHTTP, mensaje
+- Se elimina el miembro explicito MiModeloOperacion de la clase CalculadoraController por ser redundante e innecesario.
+- Se usa la anotación @BeforeEach de JUnit en el método cargaModel()
+- Mover clases MathOperation, MathOperationFactory, Resta, Suma al paquete es.iteriam.calculadora.models
+
+
 ## [0.0.2] - 2022-06-09
 ### Fixed
 - Se han añadido clases de test por capa.

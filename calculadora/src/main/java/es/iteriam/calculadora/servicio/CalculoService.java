@@ -16,8 +16,8 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
-import es.iteriam.calculadora.controllers.MathOperation;
-import es.iteriam.calculadora.controllers.MathOperationFactory;
+import es.iteriam.calculadora.models.MathOperation;
+import es.iteriam.calculadora.models.MathOperationFactory;
 import es.iteriam.calculadora.models.MiModeloOperacion;
 
 @Service

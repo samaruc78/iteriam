@@ -1,59 +1,55 @@
-package es.iteriam.calculadora.controllers;
+package es.iteriam.calculadora.exceptions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.math.BigDecimal;
-
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import es.iteriam.calculadora.models.MiModeloOperacion;
-import es.iteriam.calculadora.utils.Utils;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CalculadoraControllerTest {
+public class ExceptionControllerTest {
 
-	@MockBean
-	private MiModeloOperacion mdl;
 
-	@Autowired
-	private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
-	@BeforeEach
-	public void cargaModel() {
-		mdl = new MiModeloOperacion(new BigDecimal(2), new BigDecimal(4), "suma");
-	}
+    @Test
+    public void testExcepcion() {
 
-	@Test
-	@DisplayName("POST /calcula")
-	public void suma() throws Exception {
+    }
 
+    /**
+     * se prueba si este metodo maneja la exception correspondiente.
+     * En este caso al ser un BAD_REQUEST ha de lanzar una excepcion
+     * tipo InputParamException
+     * @throws Exception
+     */
+    @Test
+    public void inputRequestBody() throws Exception {
 		String contentResponse; // El ResponseBody donde tenemos el resultado
-		String contentRequest = Utils.asJsonString(mdl);
+		String contentRequest = "random";
 
 		MvcResult result = mockMvc.perform(post("/calcula").content(contentRequest)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(MockMvcResultHandlers.print())
-				.andExpect(status().isOk())
+				.andExpect(status().isBadRequest())
 				.andReturn();
 
-		contentResponse = result.getResponse().getContentAsString();
-
-		// Esperamos que 2 + 4 = 6
-		Assertions.assertThat(new BigDecimal(contentResponse).compareTo(mdl.getA().add(mdl.getB())));
-
-	}
+        if (result.getResolvedException() instanceof InputParamException) {
+            Assertions.assertThat(true);
+        } else {
+            Assertions.assertThat(false);
+        }
+            
+    }
 
 }

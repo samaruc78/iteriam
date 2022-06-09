@@ -2,39 +2,31 @@ package es.iteriam.calculadora.models;
 
 import java.math.BigDecimal;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import es.iteriam.calculadora.utils.Utils;
+
 public class MiModeloOperacionTest {
 
-    @Autowired
-    MiModeloOperacion modelo = new MiModeloOperacion();
+    private MiModeloOperacion mdl = new MiModeloOperacion();
 
-    @Test
+    @BeforeEach
     public void cargaModel() {
-        modelo.setA(new BigDecimal(2));
-        modelo.setB(new BigDecimal(2));
-        modelo.setOperador("suma");
+        mdl.setA(new BigDecimal(2));
+        mdl.setB(new BigDecimal(2));
+        mdl.setOperador("suma");
     }
 
     // Comprueba que el modelo es correcto
     @Test
     public void testSerialize() throws Exception {
-        cargaModel();
         JSONAssert.assertEquals(
-                "{a:2, b: 2, operador:\"suma\"}", asJsonString(modelo), JSONCompareMode.LENIENT);
+                "{a:2, b: 2, operador:\"suma\"}", Utils.asJsonString(mdl), JSONCompareMode.LENIENT);
     }
 
-    private String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 }

@@ -15,7 +15,7 @@ import es.iteriam.calculadora.controllers.CalculadoraController;
 public class CalculadoraApplicationTest {
 
 	@Autowired
-	CalculadoraController calculadoraController;
+	private CalculadoraController calculadoraController;
 
 	@Test
 	public void contextLoads() {

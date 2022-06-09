@@ -4,17 +4,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import es.iteriam.calculadora.controllers.MathOperationFactory;
-import es.iteriam.calculadora.controllers.Suma;
+import es.iteriam.calculadora.models.MathOperationFactory;
 import es.iteriam.calculadora.models.MiModeloOperacion;
+import es.iteriam.calculadora.models.Suma;
 
 public class CalculoServiceTest {
 
     @Autowired
-    MathOperationFactory operacionFactory = new MathOperationFactory();
+    private MathOperationFactory operacionFactory = new MathOperationFactory();
 
     @Autowired
-    MiModeloOperacion mdl = new MiModeloOperacion("suma");
+    private MiModeloOperacion mdl = new MiModeloOperacion("suma");
 
     @Test
     public void factoryTest() {

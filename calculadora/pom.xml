@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>es.iteriam</groupId>
 	<artifactId>calculadora</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>calculadora</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -37,6 +37,24 @@
 			<groupId>io.corp.calculator</groupId>
 			<artifactId>tracer</artifactId>
 			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../tracer-1.0.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>io.corp.calculator</groupId>
+			<artifactId>tracer</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../tracer-1.0.0-sources.jar</systemPath>
+			<classifier>source</classifier>
+		</dependency>
+		<dependency>
+			<groupId>io.corp.calculator</groupId>
+			<artifactId>tracer</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../tracer-1.0.0-javadoc.jar</systemPath>
+			<classifier>javadoc</classifier>
 		</dependency>
 	</dependencies>
 	<build>
