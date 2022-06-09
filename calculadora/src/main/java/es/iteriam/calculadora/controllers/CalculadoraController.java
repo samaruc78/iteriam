@@ -1,47 +1,48 @@
+/**
+ * Clase Controller principal de la aplicacion.
+ * 
+ * Por buenas practicas,
+ * se generaliza la logica en una sola funcion
+ * valida para ampliaciones
+ * 
+ */
+
 package es.iteriam.calculadora.controllers;
 
-import es.iteriam.calculadora.servicio.CalculoService;
-import es.iteriam.calculadora.models.MiModeloOperacion;
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import es.iteriam.calculadora.models.MiModeloOperacion;
+import es.iteriam.calculadora.servicio.CalculoService;
+import io.corp.calculator.TracerImpl;
 
 @RestController
 public class CalculadoraController {
 
     MiModeloOperacion miOperacion = new MiModeloOperacion();
+    TracerImpl tr = new TracerImpl();
 
     @Autowired
     private CalculoService calculoServicio;
 
-    @RequestMapping(value = "/calcula", params = "suma", method = RequestMethod.POST)
+    @PostMapping("/calcula")
     @ResponseBody
-    public ResponseEntity<Object> add(@ModelAttribute("miOperacion") MiModeloOperacion miOperacion, Model model) {
-        model.addAttribute("result", calculoServicio.add(miOperacion));
-        return new ResponseEntity<>(model.getAttribute("result"), HttpStatus.OK);
+    public ResponseEntity<BigDecimal> calcula(@RequestBody MiModeloOperacion miOperacion) {
+        final BigDecimal result = calculoServicio.calcula(miOperacion);
+        tr.trace(result);
+        return ResponseEntity.ok(result);
     }
 
-    @RequestMapping(value = "/calcula", params = "resta", method = RequestMethod.POST)
-    public ResponseEntity<Object> subtract(@ModelAttribute("miOperacion") MiModeloOperacion miOperacion, Model model) {
-        model.addAttribute("result", calculoServicio.subtract(miOperacion));
-        return new ResponseEntity<>(model.getAttribute("result"), HttpStatus.OK);
+    @ExceptionHandler({ Exception.class })
+    public void handleException() {
+        System.err.println("Es un error");
     }
 
-    @RequestMapping(value = "/calcula", params = "multiplica", method = RequestMethod.POST)
-    public ResponseEntity<Object> multiply(@ModelAttribute("miOperacion") MiModeloOperacion miOperacion, Model model) {
-        model.addAttribute("result", calculoServicio.multiply(miOperacion));
-        return new ResponseEntity<>(model.getAttribute("result"), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/calcula", params = "divide", method = RequestMethod.POST)
-    public ResponseEntity<Object> divide(@ModelAttribute("miOperacion") MiModeloOperacion miOperacion, Model model) {
-        model.addAttribute("result", calculoServicio.divide(miOperacion));
-        return new ResponseEntity<>(model.getAttribute("result"), HttpStatus.OK);
-    }
-
-    //TO-DO function modulo. (a mod b)
-
-    
 }
