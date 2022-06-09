@@ -11,6 +11,26 @@ https://github.com/samaruc78/sanitasTest4
 - Inyección de dependencias via Maven facilitadas en el archivo pom.xml
 - Apoyo en la herramienta [POSTMAN] https://www.postman.com/ para interactuar con el microservicio
 
+## Change Log
+Registro de cambios de la prueba técnica
+
+## [0.0.2] - 2022-06-09
+### Fixed
+- Se han añadido clases de test por capa.
+- Refactorizacion de clases como StandaloneControllerTests a CalculadoraControllerTest y código duplicado.
+- Revisión de métodos estáticos y su visibilidad.
+- Dependencia lombok eliminada.
+- Inclusión de las librerías tracer y su empaquetado en carpeta lib
+- Se crea una clase Factory (MathOperationFactory) que instancia objetos según la operación solicitada (suma, resta, etc.)	
+- Se crea la interfaz MathOperation con el método calculate para implementación de las clases derivadas según operación solicitada.	Cada clase derivada, sobrecarga la funcion calculate y de esta manera se extiende la funcionalidad según los principios SOLID.
+- La clase factory (MathOperationFactory) es la que acarrea la implementación de los cambios, liberando al resto de clases de ser susceptibles a estos cambios.
+- Las clases derivadas de MiModeloOperacion como son Suma y Resta ademas implementan la funcion calculate (mapeada al controller principal) y heredan los miembros del Modelo del Request donde se dispone de la información de entrada (operandos y operador).
+- El tipo de respuesta del controlador se ha cambiado a ResponseEntity<BigDecimal>
+- Se cambia a @RequestBody de esta manera se pueden hacer peticiones POST enviando objetos segun la clase MiModeloOperacion (2 BigDecimal y un String para indicar la operación)
+
+## [0.0.1] - 2022-06-08
+- Creación de la aplicación.
+
 ## Estructura del proyecto
 La estructura está distribuida en una carpeta para las clases:
 **Controllers**
@@ -46,8 +66,6 @@ cd calculadora
 
 ## Uso de la API
 ![POSTMAN](https://github.com/samaruc78/iteriam/blob/main/calculadora/APICall.png)
-
-
 
 ## TO-DO
 # Docker
