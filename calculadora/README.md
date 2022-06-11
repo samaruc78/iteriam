@@ -14,12 +14,17 @@ https://github.com/samaruc78/sanitasTest4
 ## Change Log
 Registro de cambios de la prueba técnica
 
-## Work In Progress (WIP)
-- Se crea un paquete para excepciones (y sus clases de test) y se incorporan las siguientes:
-- ExceptionControllerHandler que engloba todos los manejadores de error
-- InvalidOperationException como excepcion concreta para operaciones invalidas (incluyendo las no implementadas aun)
-- InputParamException en el caso que haya operandos que no sean números (como Strings, chars...)
-- ErrorRespone como salida de error con campos de informacion como fecha, estadoHTTP, mensaje
+## [0.0.4] - 2022-06-11
+### Fixed
+- Se incluyen tests con las demás operaciones implementadas. Se crea la clase Division para probar divisores 0.
+- Se crea un paquete "advicers" para manejadores de excepciones (y sus clases de test) y se incorporan las siguientes:
+-- ExceptionControllerHandler que engloba todos los manejadores de error. Se incluye el bean de tracer en ExceptionControllerHandler para registrar las excepciones.
+-- Se sustituye la excepcion "InputParamException" por "HttpMessageNotReadableException" (propia de spring), también manejada desde ExceptionControllerHandler.
+-- La excepcion InvalidOerationException ya funciona completamente y es lanzada cuando hay operaciones que no están implementadas (por ejemplo multiplicar).
+-- Se incluye además en ExceptionControllerHandler, un manejador para tratar las excepciones tipo ArithmeticException (pej. divisiones por cero).
+-- ErrorRespone como salida de error con campos de informacion como fecha, estadoHTTP, mensaje
+- Se incluye fichero .gitignore con reglas para evitar mantener ficheros binarios (.class) y configuraciones del editor.
+
 
 ## [0.0.3] - 2022-06-09
 ### Fixed
