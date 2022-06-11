@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
+import es.iteriam.calculadora.advicers.InvalidOperationException;
 import es.iteriam.calculadora.models.MathOperation;
 import es.iteriam.calculadora.models.MathOperationFactory;
 import es.iteriam.calculadora.models.MiModeloOperacion;
@@ -24,9 +25,14 @@ import es.iteriam.calculadora.models.MiModeloOperacion;
 public class CalculoService {
 
     public BigDecimal calcula(MiModeloOperacion model) {
-        MathOperationFactory operacionFactory = new MathOperationFactory();        
-        MathOperation operacion = operacionFactory.getOperation(model);        
-        return operacion.calculate();        
+        MathOperationFactory operacionFactory = new MathOperationFactory();
+        MathOperation operacion = operacionFactory.getOperation(model);
+        
+        if (operacion == null){
+            throw new InvalidOperationException("Operaci\u00F3n (" + model.getOperador() + "): no implementada.");
+        }
+
+        return operacion.calculate();
     }
-    
+
 }

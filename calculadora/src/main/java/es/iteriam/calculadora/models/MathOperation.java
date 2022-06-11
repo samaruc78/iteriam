@@ -4,7 +4,6 @@
  * 
  */
 
-
 package es.iteriam.calculadora.models;
 
 import java.math.BigDecimal;

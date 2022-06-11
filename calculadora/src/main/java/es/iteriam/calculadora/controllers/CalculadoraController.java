@@ -34,8 +34,10 @@ public class CalculadoraController {
     @PostMapping("/calcula")
     @ResponseBody
     public ResponseEntity<BigDecimal> calcula(@RequestBody MiModeloOperacion miOperacion) {
+
         final BigDecimal result = calculoServicio.calcula(miOperacion);
         tr.trace(result);
+
         return ResponseEntity.ok(result);
 
     }

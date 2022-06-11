@@ -22,14 +22,15 @@ public class MathOperationFactory {
         } else if (operador.equalsIgnoreCase("RESTA")) {
             return new Resta(operation.getA(), operation.getB());
 
+        } else if (operador.equalsIgnoreCase("DIVISION")) {
+            return new Division(operation.getA(), operation.getB());
+
         }
         // Resto de operaciones ampliar aqui para no modificar el Controller
         // .......
 
-        // Resto de operaciones ampliar aqui para no modificar el Controller
-        // TO-DO Mejorarlo con mappers en el controller
-        System.out.println("No se ha implementado está petición");
-
+        // Si llegamos aqui es porque la operacion no existe
+        // Se delega la evaluación del null en el servicio para lanzar la excepcion.
         return null;
     }
 
